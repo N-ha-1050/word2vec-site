@@ -5,18 +5,16 @@ import {
   Input,
   InputGroup,
   InputRightAddon,
-  Stack,
   Button,
   Box,
   Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
   Table,
+  Tr,
+  Td,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
+import { type } from "os"
 
 const api_url: string = "http://localhost:8000/api/word_calc/"
 
@@ -62,7 +60,36 @@ const api_url: string = "http://localhost:8000/api/word_calc/"
 
 export function App() {
   const [value, setValue] = React.useState("")
-  const [items, setItems] = React.useState({key: String})
+  type Result = {
+    "1":string,
+    "2":string,
+    "3":string,
+    "4":string,
+    "5":string,
+    "6":string,
+    "7":string,
+    "8":string,
+    "9":string,
+    "10":string,
+    "Error":string,
+  }
+  const [items, setItems] = React.useState({
+    "positive": [],
+    "negative": [],
+    "result": {
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        6: "",
+        7: "",
+        8: "",
+        9: "",
+        10: "",
+        Error: "",
+    }
+  })
   const [isLoaded, setIsLoaded] = React.useState(false)
   const [isClicked, setIsClicked] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
@@ -96,47 +123,47 @@ export function App() {
     setIsClicked(false)
     setIsLoaded(false)
     setIsOpen(false)
-    setItems({key: String})
+    //setItems({key: String})
   }
   if (isClicked && isLoaded) {
     return (
       <ChakraProvider theme={theme}>
-        <Box textAlign="center" marginTop="5%">
+      <Box w="90%" display="flex" justifyContent="center" alignItems="center" flexDirection="column" alignContent="center" m="5%">
           <Text fontSize="2xl">{value} = </Text>
-          <Heading margin="20px" as="h1" hidden={!items["result"]["1"]}>Answer: {items["result"]["1"]}</Heading>
-          <Heading as="h1" hidden={!items["result"]["Error"]}>Error:{items["result"]["Error"]}</Heading>
-          <Heading as="h1" hidden={items["result"]["1"]||items["result"]["Error"]}>Unexpected Ezrror</Heading>
-          <Button margin="10px" hidden={isOpen} onClick={() => setIsOpen(true)}>Learn more</Button>
-          <Button margin="10px" hidden={!isOpen} onClick={() => setIsOpen(false)}>Hide</Button>
-          <Box hidden={!isOpen} itemAlign="center" marginRight="auto" marginLeft="auto">
-            <Table marginLeft="auto" marginRight="auto" marginTop="10px">
-              {Object.keys(items.result).map(key => (
-                <tr>
-                  <td>
-                    {key}
-                  </td>
-                  <td>
-                    {items.result[key]}
-                  </td>
-                </tr>
-              ))}
-            </Table>
+          <Heading m="20px" as="h1" hidden={!items["result"]["1"]}>Answer: {items["result"]["1"]}</Heading>
+          <Heading m="20px" as="h1" hidden={!items["result"]["Error"]} color="darkred" borderRadius="5px" p="5px" border="solid">Known Error</Heading>
+          <Heading m="20px" as="h1" hidden={Boolean(items["result"]["1"]) || Boolean(items["result"]["Error"])} color="purple" borderRadius="5px" p="5px" border="solid">Unexpected Error</Heading>
+          <Button m="10px" hidden={isOpen} onClick={() => setIsOpen(true)}>Learn more</Button>
+          <Button m="10px" hidden={!isOpen} onClick={() => setIsOpen(false)}>Hide</Button>
+          <Table hidden={!isOpen} marginTop="10px" variant="simple" width="fit-content" minW="25%">
+            {(Object.keys(items.result) as (keyof Result)[]).map(key => (
+              <Tr>
+                <Td color={(key==="1")?"gold":(key==="2")?"silver":(key==="3")?"Brown":""}>
+                  {key}
+                </Td>
+                <Td>
+                  {items["result"][key]}
+                </Td>
+              </Tr>
+            ))}
+          </Table>
+          <Box hidden={!isOpen} marginTop="10px">
             <Text margin="10px">positive: "
               {Object.keys(items.positive).map(key => (
                 <span>
-                {items.positive[key]},
+                {items.positive[Number(key)]},
                 </span>
               ))}
             "</Text>
             <Text margin="10px">negative: "
               {Object.keys(items.negative).map(key => (
                 <span>
-                {items.negative[key]},
+                {items.negative[Number(key)]},
                 </span>
               ))}
             "</Text>
-          </Box>
-          <Button margin="10px" colorScheme="red" onClick={handleClickReturn}>Return</Button>
+            </Box>
+          <Button m="10px" colorScheme="red" onClick={handleClickReturn}>Return</Button>
         </Box>
       </ChakraProvider>
       )
@@ -152,12 +179,12 @@ export function App() {
     }
     return (
       <ChakraProvider theme={theme}>
-        <Heading as="h1" textAlign="center" margin="50px" marginTop="10%">Word2Vec</Heading>
-        <Box marginLeft="10%" marginRight="10%" alignItems="center" textAlign="center">
-          <Text>
+        <Box w="90%" h="100vh" display="flex" justifyContent="center" alignItems="center" flexDirection="column" alignContent="center" mx="5%">
+          <Heading as="h1">Word2Vec</Heading>
+          <Text m="25px">
             単語の計算をすることができます。計算式を入力して送信して下さい。<br/>You can calculate words. Please enter the formula and send.
           </Text>
-          <InputGroup margin="10px">
+          <InputGroup m="20px" maxW="1000px">
             <Input
               value={value}
               onChange={handleChange}
@@ -177,7 +204,6 @@ export function App() {
               Submit
           </Button>
         </Box>
-        
       </ChakraProvider>
     )
   }
