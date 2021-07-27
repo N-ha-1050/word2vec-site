@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/word2vec-site/static/js/main.be2b4be0.chunk.js",
-    "main.js.map": "/word2vec-site/static/js/main.be2b4be0.chunk.js.map",
+    "main.js": "/word2vec-site/static/js/main.29022d41.chunk.js",
+    "main.js.map": "/word2vec-site/static/js/main.29022d41.chunk.js.map",
     "runtime-main.js": "/word2vec-site/static/js/runtime-main.b113fedd.js",
     "runtime-main.js.map": "/word2vec-site/static/js/runtime-main.b113fedd.js.map",
-    "static/js/2.1d7ea3ee.chunk.js": "/word2vec-site/static/js/2.1d7ea3ee.chunk.js",
-    "static/js/2.1d7ea3ee.chunk.js.map": "/word2vec-site/static/js/2.1d7ea3ee.chunk.js.map",
+    "static/js/2.94127797.chunk.js": "/word2vec-site/static/js/2.94127797.chunk.js",
+    "static/js/2.94127797.chunk.js.map": "/word2vec-site/static/js/2.94127797.chunk.js.map",
     "static/js/3.4f209b15.chunk.js": "/word2vec-site/static/js/3.4f209b15.chunk.js",
     "static/js/3.4f209b15.chunk.js.map": "/word2vec-site/static/js/3.4f209b15.chunk.js.map",
     "index.html": "/word2vec-site/index.html",
-    "static/js/2.1d7ea3ee.chunk.js.LICENSE.txt": "/word2vec-site/static/js/2.1d7ea3ee.chunk.js.LICENSE.txt"
+    "static/js/2.94127797.chunk.js.LICENSE.txt": "/word2vec-site/static/js/2.94127797.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b113fedd.js",
-    "static/js/2.1d7ea3ee.chunk.js",
-    "static/js/main.be2b4be0.chunk.js"
+    "static/js/2.94127797.chunk.js",
+    "static/js/main.29022d41.chunk.js"
   ]
 }
