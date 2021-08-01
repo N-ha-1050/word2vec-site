@@ -237,11 +237,13 @@ export function App() {
           >
             Submit
           </Button>
+          {/*
           <Button
             onClick={() => setIsAbout(true)}
           >
             About
           </Button>
+          */}
           </Stack>
         </Flex>
       </ChakraProvider>
